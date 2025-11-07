@@ -3,411 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fórum de Reclamações - Cidade</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #34495e;
-            --success-color: #2ecc71;
-            --warning-color: #f39c12;
-            --danger-color: #e74c3c;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        nav ul li a:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-        }
-
-        .btn-primary {
-            background-color: var(--secondary-color);
-        }
-
-        .btn-secondary {
-            background-color: var(--primary-color);
-        }
-
-        .btn-accent {
-            background-color: var(--accent-color);
-        }
-
-        .btn-accent:hover {
-            background-color: #c0392b;
-        }
-
-        .btn-success {
-            background-color: var(--success-color);
-        }
-
-        .btn-success:hover {
-            background-color: #27ae60;
-        }
-
-        .page {
-            display: none;
-            padding: 2rem 0;
-            flex: 1;
-        }
-
-        .active {
-            display: block;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 3rem 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .auth-form {
-            max-width: 500px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .auth-form h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-        }
-
-        .auth-form p {
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-
-        .auth-form a {
-            color: var(--secondary-color);
-            text-decoration: none;
-        }
-
-        .auth-form a:hover {
-            text-decoration: underline;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #eee;
-        }
-
-        .complaint-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-
-        .complaint-form h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        .complaints-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .complaint-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .complaint-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .complaint-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .complaint-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .complaint-category {
-            background: var(--light-color);
-            padding: 4px 8px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--dark-color);
-        }
-
-        .status {
-            padding: 4px 8px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .status.pendente {
-            background-color: var(--warning-color);
-            color: white;
-        }
-
-        .status.respondida {
-            background-color: var(--success-color);
-            color: white;
-        }
-
-        .complaint-description {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .complaint-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 1rem;
-        }
-
-        .response-section {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid var(--secondary-color);
-        }
-
-        .response-section h4 {
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .no-response {
-            color: #888;
-            font-style: italic;
-        }
-
-        .prefeitura-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .stat-card h3 {
-            color: var(--dark-color);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-card p {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-
-        .response-form {
-            margin-top: 1rem;
-        }
-
-        .response-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 0.5rem;
-            resize: vertical;
-        }
-
-        footer {
-            background-color: var(--dark-color);
-            color: white;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: auto;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .dashboard-header {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-            
-            .complaints-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .prefeitura-stats {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Fórum de Reclamações - Birigui</title>
+    <link rel="stylesheet" href="assets/CSS/style.css">
+    <link rel="stylesheet" href="assets/js/app.js">
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Fórum da Cidade</div>
+                <div class="logo">Fórum de Birigui</div>
                 <nav>
                     <ul>
                         <li><a href="#" onclick="showPage('home')">Início</a></li>
@@ -420,7 +24,7 @@
     </header>
 
     <main class="container">
-        <!-- Página Inicial -->
+       
         <div id="home" class="page active">
             <div class="hero">
                 <h1>Fórum de Reclamações da Cidade</h1>
@@ -434,12 +38,12 @@
             <div class="recent-complaints">
                 <h2>Reclamações Recentes</h2>
                 <div id="complaints-list" class="complaints-grid">
-                    <!-- As reclamações serão carregadas via JavaScript -->
+                    
                 </div>
             </div>
         </div>
 
-        <!-- Cadastro de Usuário -->
+        
         <div id="register-user" class="page">
             <div class="auth-form">
                 <h2>Cadastro de Cidadão</h2>
@@ -466,7 +70,7 @@
             </div>
         </div>
 
-        <!-- Login Usuário -->
+     
         <div id="login-user" class="page">
             <div class="auth-form">
                 <h2>Login - Cidadão</h2>
@@ -485,7 +89,7 @@
             </div>
         </div>
 
-        <!-- Login Prefeitura -->
+      
         <div id="login-prefeitura" class="page">
             <div class="auth-form">
                 <h2>Login - Prefeitura</h2>
@@ -503,7 +107,7 @@
             </div>
         </div>
 
-        <!-- Dashboard do Usuário -->
+  
         <div id="dashboard-user" class="page">
             <div class="dashboard-header">
                 <h2>Dashboard do Cidadão</h2>
@@ -550,12 +154,12 @@
             <div class="user-complaints">
                 <h3>Minhas Reclamações</h3>
                 <div id="user-complaints-list">
-                    <!-- Lista de reclamações do usuário -->
+                
                 </div>
             </div>
         </div>
 
-        <!-- Dashboard da Prefeitura -->
+
         <div id="dashboard-prefeitura" class="page">
             <div class="dashboard-header">
                 <h2>Dashboard da Prefeitura</h2>
@@ -581,7 +185,7 @@
             <div class="all-complaints">
                 <h3>Todas as Reclamações</h3>
                 <div id="all-complaints-list">
-                    <!-- Lista de todas as reclamações -->
+        
                 </div>
             </div>
         </div>
@@ -589,361 +193,10 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Fórum de Reclamações da Cidade. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Fórum de Reclamações da Cidade. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <script>
-        // Dados iniciais
-        let users = JSON.parse(localStorage.getItem('forumUsers')) || [];
-        let complaints = JSON.parse(localStorage.getItem('forumComplaints')) || [];
-        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
-
-        // Configuração inicial
-        window.onload = function() {
-            setupForms();
-            loadHomeComplaints();
-            checkLogin();
-        };
-
-        // Configurar formulários
-        function setupForms() {
-            // Cadastro de usuário
-            document.getElementById('register-user-form').onsubmit = function(e) {
-                e.preventDefault();
-                registerUser();
-            };
-
-            // Login de usuário
-            document.getElementById('login-user-form').onsubmit = function(e) {
-                e.preventDefault();
-                loginUser();
-            };
-
-            // Login da prefeitura
-            document.getElementById('login-prefeitura-form').onsubmit = function(e) {
-                e.preventDefault();
-                loginPrefeitura();
-            };
-
-            // Nova reclamação
-            document.getElementById('new-complaint-form').onsubmit = function(e) {
-                e.preventDefault();
-                submitComplaint();
-            };
-        }
-
-        // Cadastrar usuário
-        function registerUser() {
-            const name = document.getElementById('user-name').value;
-            const email = document.getElementById('user-email').value;
-            const password = document.getElementById('user-password').value;
-            const address = document.getElementById('user-address').value;
-
-            if (users.find(user => user.email === email)) {
-                alert('E-mail já cadastrado!');
-                return;
-            }
-
-            const newUser = {
-                id: Date.now().toString(),
-                name,
-                email,
-                password,
-                address,
-                createdAt: new Date().toISOString()
-            };
-
-            users.push(newUser);
-            localStorage.setItem('forumUsers', JSON.stringify(users));
-            
-            alert('Cadastro realizado com sucesso!');
-            showPage('login-user');
-        }
-
-        // Login usuário
-        function loginUser() {
-            const email = document.getElementById('login-user-email').value;
-            const password = document.getElementById('login-user-password').value;
-
-            const user = users.find(u => u.email === email && u.password === password);
-            
-            if (user) {
-                currentUser = user;
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                showUserDashboard();
-            } else {
-                alert('E-mail ou senha incorretos!');
-            }
-        }
-
-        // Login prefeitura
-        function loginPrefeitura() {
-            const email = document.getElementById('login-pref-email').value;
-            const password = document.getElementById('login-pref-password').value;
-
-            // Credenciais fixas da prefeitura
-            if (email === 'prefeitura@cidade.gov.br' && password === 'admin123') {
-                currentUser = { name: 'Prefeitura Municipal', isPrefeitura: true };
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                showPrefeituraDashboard();
-            } else {
-                alert('Credenciais da prefeitura incorretas!');
-            }
-        }
-
-        // Logout
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('currentUser');
-            showPage('home');
-        }
-
-        // Verificar se está logado
-        function checkLogin() {
-            if (currentUser) {
-                if (currentUser.isPrefeitura) {
-                    showPrefeituraDashboard();
-                } else {
-                    showUserDashboard();
-                }
-            }
-        }
-
-        // Enviar reclamação
-        function submitComplaint() {
-            if (!currentUser) {
-                alert('Você precisa estar logado!');
-                return;
-            }
-
-            const title = document.getElementById('complaint-title').value;
-            const category = document.getElementById('complaint-category').value;
-            const description = document.getElementById('complaint-description').value;
-            const location = document.getElementById('complaint-location').value;
-
-            const newComplaint = {
-                id: Date.now().toString(),
-                userId: currentUser.id,
-                userName: currentUser.name,
-                title,
-                category,
-                description,
-                location,
-                status: 'pendente',
-                createdAt: new Date().toISOString(),
-                responses: []
-            };
-
-            complaints.unshift(newComplaint);
-            localStorage.setItem('forumComplaints', JSON.stringify(complaints));
-            
-            document.getElementById('new-complaint-form').reset();
-            hideComplaintForm();
-            showUserDashboard();
-            
-            alert('Reclamação enviada com sucesso!');
-        }
-
-        // Adicionar resposta
-        function addResponse(complaintId) {
-            const responseText = document.getElementById(`response-${complaintId}`).value;
-            
-            if (!responseText.trim()) {
-                alert('Digite uma resposta!');
-                return;
-            }
-
-            const complaint = complaints.find(c => c.id === complaintId);
-            if (complaint) {
-                const response = {
-                    id: Date.now().toString(),
-                    text: responseText,
-                    author: 'Prefeitura Municipal',
-                    createdAt: new Date().toISOString()
-                };
-                
-                complaint.responses.push(response);
-                complaint.status = 'respondida';
-                localStorage.setItem('forumComplaints', JSON.stringify(complaints));
-                
-                document.getElementById(`response-${complaintId}`).value = '';
-                showPrefeituraDashboard();
-                alert('Resposta enviada!');
-            }
-        }
-
-        // Mostrar dashboard do usuário
-        function showUserDashboard() {
-            document.getElementById('user-welcome').textContent = currentUser.name;
-            loadUserComplaints();
-            showPage('dashboard-user');
-        }
-
-        // Carregar reclamações do usuário
-        function loadUserComplaints() {
-            const userComplaints = complaints.filter(c => c.userId === currentUser.id);
-            const container = document.getElementById('user-complaints-list');
-            
-            if (userComplaints.length === 0) {
-                container.innerHTML = '<p>Você ainda não fez nenhuma reclamação.</p>';
-                return;
-            }
-
-            container.innerHTML = userComplaints.map(complaint => `
-                <div class="complaint-card">
-                    <div class="complaint-header">
-                        <div>
-                            <div class="complaint-title">${complaint.title}</div>
-                            <span class="complaint-category">${getCategoryName(complaint.category)}</span>
-                        </div>
-                        <span class="status ${complaint.status}">${complaint.status}</span>
-                    </div>
-                    <div class="complaint-description">${complaint.description}</div>
-                    <div class="complaint-meta">
-                        <span>Local: ${complaint.location}</span>
-                        <span>${formatDate(complaint.createdAt)}</span>
-                    </div>
-                    ${complaint.responses.length > 0 ? `
-                        <div class="response-section">
-                            <h4>Resposta da Prefeitura:</h4>
-                            ${complaint.responses.map(response => `
-                                <div class="response">
-                                    <p>${response.text}</p>
-                                    <small>${response.author} - ${formatDate(response.createdAt)}</small>
-                                </div>
-                            `).join('')}
-                        </div>
-                    ` : '<p class="no-response">Aguardando resposta da prefeitura...</p>'}
-                </div>
-            `).join('');
-        }
-
-        // Mostrar dashboard da prefeitura
-        function showPrefeituraDashboard() {
-            loadPrefeituraStats();
-            loadAllComplaints();
-            showPage('dashboard-prefeitura');
-        }
-
-        // Carregar estatísticas
-        function loadPrefeituraStats() {
-            const total = complaints.length;
-            const pending = complaints.filter(c => c.status === 'pendente').length;
-            const answered = complaints.filter(c => c.status === 'respondida').length;
-
-            document.getElementById('total-complaints').textContent = total;
-            document.getElementById('pending-complaints').textContent = pending;
-            document.getElementById('answered-complaints').textContent = answered;
-        }
-
-        // Carregar todas as reclamações
-        function loadAllComplaints() {
-            const container = document.getElementById('all-complaints-list');
-            
-            if (complaints.length === 0) {
-                container.innerHTML = '<p>Nenhuma reclamação encontrada.</p>';
-                return;
-            }
-
-            container.innerHTML = complaints.map(complaint => `
-                <div class="complaint-card">
-                    <div class="complaint-header">
-                        <div>
-                            <div class="complaint-title">${complaint.title}</div>
-                            <span class="complaint-category">${getCategoryName(complaint.category)}</span>
-                        </div>
-                        <span class="status ${complaint.status}">${complaint.status}</span>
-                    </div>
-                    <div class="complaint-description">${complaint.description}</div>
-                    <div class="complaint-meta">
-                        <span>Por: ${complaint.userName}</span>
-                        <span>Local: ${complaint.location}</span>
-                        <span>${formatDate(complaint.createdAt)}</span>
-                    </div>
-                    ${complaint.responses.length > 0 ? `
-                        <div class="response-section">
-                            <h4>Resposta da Prefeitura:</h4>
-                            ${complaint.responses.map(response => `
-                                <div class="response">
-                                    <p>${response.text}</p>
-                                    <small>${response.author} - ${formatDate(response.createdAt)}</small>
-                                </div>
-                            `).join('')}
-                        </div>
-                    ` : ''}
-                    <div class="response-form">
-                        <textarea id="response-${complaint.id}" placeholder="Digite a resposta da prefeitura..." rows="3"></textarea>
-                        <button class="btn btn-success" onclick="addResponse('${complaint.id}')">Enviar Resposta</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Carregar reclamações da página inicial
-        function loadHomeComplaints() {
-            const recentComplaints = complaints.slice(0, 6);
-            const container = document.getElementById('complaints-list');
-            
-            if (recentComplaints.length === 0) {
-                container.innerHTML = '<p>Nenhuma reclamação pública disponível.</p>';
-                return;
-            }
-
-            container.innerHTML = recentComplaints.map(complaint => `
-                <div class="complaint-card">
-                    <div class="complaint-header">
-                        <div class="complaint-title">${complaint.title}</div>
-                        <span class="complaint-category">${getCategoryName(complaint.category)}</span>
-                    </div>
-                    <div class="complaint-description">${complaint.description}</div>
-                    <div class="complaint-meta">
-                        <span>Local: ${complaint.location}</span>
-                        <span>${formatDate(complaint.createdAt)}</span>
-                    </div>
-                    ${complaint.responses.length > 0 ? `
-                        <div class="response-section">
-                            <h4>Resposta da Prefeitura:</h4>
-                            <p>${complaint.responses[0].text}</p>
-                        </div>
-                    ` : ''}
-                </div>
-            `).join('');
-        }
-
-        // Funções auxiliares
-        function getCategoryName(category) {
-            const categories = {
-                'infraestrutura': 'Infraestrutura',
-                'transporte': 'Transporte',
-                'saude': 'Saúde',
-                'educacao': 'Educação',
-                'seguranca': 'Segurança',
-                'meio-ambiente': 'Meio Ambiente',
-                'outros': 'Outros'
-            };
-            return categories[category] || category;
-        }
-
-        function formatDate(dateString) {
-            return new Date(dateString).toLocaleDateString('pt-BR');
-        }
-
-        // Navegação
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-        }
-
-        function showComplaintForm() {
-            document.getElementById('complaint-form').style.display = 'block';
-        }
-
-        function hideComplaintForm() {
-            document.getElementById('complaint-form').style.display = 'none';
-        }
-    </script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
